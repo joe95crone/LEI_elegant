@@ -1,0 +1,47 @@
+&run_setup
+		lattice = SCRIPT_TEST.lte
+		default_order = 2
+		use_beamline = test_line
+		p_central_mev = 1000
+		sigma = track_files/%s.sig
+		centroid = track_files/%s.cen
+		parameters = track_files/%s.param
+		output = track_files/%s.out
+		bpm_centroid = track_files/%s.bpmcen
+		random_number_seed=123456789
+		print_statistics=1
+&end
+
+&run_control
+		n_steps = 1
+&end
+
+&run_control
+		n_steps = 1
+&end
+
+&twiss_output
+		filename = track_files/%s.twi
+		output_at_each_step = 1
+		matched = 0
+		statistics = 1
+		beta_x = 0.005, alpha_x = 0
+		beta_y = 0.005, alpha_y = 0
+&end
+
+!&bunched_beam
+!		bunch = track_files/%s.bun
+!		n_particles_per_bunch = 1000
+!		emit_nx = 1e-6
+!		emit_ny = 1e-6
+!		sigma_dp = 0
+!		sigma_s = 0.001
+!		use_twiss_command_values = 1
+!&end
+
+&sdds_beam
+		input = ../../EPAC/FBPIC_Beam/Saved_Beams/OF_1GeV_2023.sdds
+		input_type = "elegant"
+&end
+
+&track &end

@@ -1,0 +1,16 @@
+#--------------------------------------#
+#           Joe Crone                  #
+#          13/02/2024                  #
+#       SCRIPT_element_test            #
+#--------------------------------------#
+
+# DRIFTS
+% 0 sto dlen
+
+d1: drift, L="dlen"
+
+!# KEEP_FILES=1 will print out the temporary SDDS files used
+!# Need to set DRIFT_MATRIX=1 or we don't get full distribution just a subset of 25 particles used to calculate the transport matrix
+scripto: script, command = "python3 main_LEI.py %i %o", KEEP_FILES=0, USE_CSH=0, DRIFT_MATRIX=1;
+
+test_line: line = (d1, scripto, d1)
